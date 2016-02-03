@@ -1,0 +1,35 @@
+{
+  "name": "project-pixel",
+  "version": "1.0.0",
+  "description": "A Pixel Graffiti Wall",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "rails s",
+    "test": "karma start test/karma.conf.js",
+    "pro": "protractor test/e2e/conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshuaTatterton/Project_Pixel.git"
+  },
+  "author": "Josh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshuaTatterton/Project_Pixel/issues"
+  },
+  "devDependencies": {
+    "bower": "^1.5.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18",
+    "protractor": "^2.2.0"
+  },
+  "dependencies": {
+    "bower": "^1.5.2",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3"
+  }
+}
