@@ -5,8 +5,7 @@
   "scripts": {
     "postinstall": "bower install",
     "start": "rails s",
-    "test": "karma start spec/karma.conf.js",
-    "pro": "protractor spec/e2e/conf.js"
+    "test": "karma start spec/karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -18,15 +17,13 @@
     "url": "https://github.com/JoshuaTatterton/Project_Pixel/issues"
   },
   "devDependencies": {
-    "bower": "^1.5.2",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.9",
     "karma-chrome-launcher": "^0.2.0",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.18",
-    "protractor": "^2.2.0"
+    "phantomjs": "^1.9.18"
   },
   "dependencies": {
     "bower": "^1.5.2",

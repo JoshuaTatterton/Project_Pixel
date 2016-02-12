@@ -9,4 +9,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  Capybara.javascript_driver = :selenium
+  
 end
