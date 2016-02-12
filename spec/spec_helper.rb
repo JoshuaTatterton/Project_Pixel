@@ -1,3 +1,4 @@
+require "capybara"
 
 RSpec.configure do |config|
 
@@ -10,5 +11,5 @@ RSpec.configure do |config|
   end
 
   Capybara.javascript_driver = :selenium
-  
+
 end
