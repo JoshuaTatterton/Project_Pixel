@@ -52,6 +52,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-angular (0.2.3)
+      capybara (>= 2.5.0)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.1.1)
@@ -186,6 +188,7 @@ DEPENDENCIES
   bower-rails
   byebug
   capybara
+  capybara-angular
   coffee-rails (~> 4.1.0)
   database_cleaner
   jbuilder (~> 2.0)

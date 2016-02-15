@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require angular/angular
+//= require angular-resource/angular-resource
+//= require_tree .

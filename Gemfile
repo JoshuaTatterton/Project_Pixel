@@ -49,6 +49,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'capybara-angular'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
 end

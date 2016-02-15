@@ -7,10 +7,10 @@
   <body ng-controller="GraffitiController as ctrl">
   <div class="grid">
     <ul class="vertical">
-      <li ng-repeat="row in ctrl.graffiti" class="vertical">
+      <li ng-repeat="row in ctrl.graffiti.rows" class="vertical" id="v{{row.no}}">
         <ul class="horizontal">
-          <li ng-repeat="collumn in row" class="horizontal">
-            <div class="pixel"></div>
+          <li ng-repeat="column in row.columns" class="horizontal" id="h{{column.no}}">
+            <div class="pixel" id="{{column.no}}{{row.no}}"></div>
           </li>
         </ul>
       </li>

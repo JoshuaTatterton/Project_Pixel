@@ -20,12 +20,12 @@ feature "graffiti" do
     scenario "the wall has a 16 x 7 grid containing pixels", js: true do
       visit "/graffiti"
       within("ul.vertical") do
-        for i in 1..7
-          within("li.vertical##{i}") do
+        for j in 1..7
+          within("li#v#{j}") do
             within("ul.horizontal") do
               for i in 1..16
-                within("li.horizontal##{i}") do
-                  expect(page).to have_css("div.pixel")
+                within("li#h#{i}") do
+                  expect(page).to have_css("div##{i}#{j}")
                 end
               end
             end
