@@ -1,12 +1,19 @@
-<body>
+<html lang="en" ng-app="Graffiti">
+  <head>
+    <meta charset="utf-8">
+    <title>Graffiti</title>
+  </head>
 
-<ul class="vertical">
-  <li>
-    <ul class="horizontal">
-      <li>
-        grid
+  <body ng-controller="GraffitiController as ctrl">
+  <div class="grid">
+    <ul class="vertical">
+      <li ng-repeat="row in ctrl.graffiti" class="vertical">
+        <ul class="horizontal">
+          <li ng-repeat="collumn in row" class="horizontal">
+            <div class="pixel"></div>
+          </li>
+        </ul>
       </li>
     </ul>
-  </li>
-</ul>
-</body>
+  </div>
+  </body>

@@ -15,7 +15,24 @@ feature "graffiti" do
   context "when drawing graffiti" do
     scenario "there is a wall to draw on", js: true do
       visit "/graffiti"
-      expect(page).to have_content("grid")
+      expect(page).to have_css("div.grid")
+    end
+    scenario "the wall has a 16 x 7 grid containing pixels", js: true do
+      visit "/graffiti"
+      within("ul.vertical") do
+        for i in 1..7
+          within("li.vertical##{i}") do
+            within("ul.horizontal") do
+              for i in 1..16
+                within("li.horizontal##{i}") do
+                  expect(page).to have_css("div.pixel")
+                end
+              end
+            end
+          end
+        end
+      end
     end
   end
+
 end
