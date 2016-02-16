@@ -17,19 +17,19 @@ feature "graffiti" do
       visit "/graffiti"
       expect(page).to have_css("div.grid")
     end
-    scenario "the wall has a 16 x 7 grid containing pixels", js: true do
+    it "the wall has a 16 x 7 grid containing pixels", js: true do
       visit "/graffiti"
-      within("ul.vertical") do
-        for j in 1..7
-          within("li#v#{j}") do
-            within("ul.horizontal") do
-              for i in 1..16
-                within("li#h#{i}") do
-                  expect(page).to have_css("div##{i}#{j}")
-                end
-              end
-            end
-          end
+      for j in 1..7
+        for i in 1..16
+          expect(page).to have_button("#{i}#{j}")
+        end
+      end
+    end
+    scenario "the pixels are defaulted to a certain colour", js: true do
+      visit "/graffiti"
+      for j in 1..7
+        for i in 1..16
+            expect(page.find_by_id("#{i}#{j}").native.css_value("background-color")).to eq("rgb(192,192,192)")
         end
       end
     end
