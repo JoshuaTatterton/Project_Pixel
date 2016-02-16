@@ -18,6 +18,30 @@ describe("GraffitiController", function() {
     expect((ctrl.graffiti.rows[6]).columns[4].colour).toEqual("rgba(255, 255, 255, 1)");
   });
 
+  it("is default to grid on", function() {
+    expect(ctrl.grid).toBeTruthy();
+  });
+
+  it("can switch the grid off", function() {
+    ctrl.gridSwitch()
+    expect(ctrl.grid).toBeFalsy();
+  });
+
+  it("can switch the grid back on", function() {
+    ctrl.gridSwitch()
+    ctrl.gridSwitch()
+    expect(ctrl.grid).toBeTruthy();
+  });
+
+  it("the grid is black by default", function() {
+    expect(ctrl.gridColour(1,1)).toEqual("rgba(0, 0, 0, 1)");
+  });
+
+  it("the grid becomes the colour of the block", function() {
+    ctrl.gridSwitch()
+    expect(ctrl.gridColour(1,1)).toEqual("rgba(192,192,192,1)");
+  });
+
 });
 
 var f = { 

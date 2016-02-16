@@ -16,6 +16,20 @@ graffiti.controller('GraffitiController', function() {
     ]
   };
 
+  self.grid = true;
+  
+  self.gridSwitch = function() {
+    self.grid = !self.grid
+  };
+
+  self.gridColour = function(column, row) {
+    if(self.grid) {
+      return "rgba(0, 0, 0, 1)"
+    } else {
+      return (self.graffiti.rows[row-1]).columns[column-1].colour
+    } 
+  };
+
   self.paint = function(column, row, newColour) {
     (self.graffiti.rows[row-1]).columns[column-1].colour = newColour
   };
