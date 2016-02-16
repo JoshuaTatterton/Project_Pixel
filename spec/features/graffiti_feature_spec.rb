@@ -17,7 +17,7 @@ feature "graffiti" do
       visit "/graffiti"
       expect(page).to have_css("div.grid")
     end
-    it "the wall has a 16 x 7 grid containing pixels", js: true do
+    scenario "the wall has a 16 x 7 grid containing pixels", js: true do
       visit "/graffiti"
       for j in 1..7
         for i in 1..16
@@ -29,7 +29,7 @@ feature "graffiti" do
       visit "/graffiti"
       for j in 1..7
         for i in 1..16
-            expect(page.find_by_id("#{i}#{j}").native.css_value("background-color")).to eq("rgb(192,192,192)")
+            expect(page.find_by_id("#{i}#{j}").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
         end
       end
     end
