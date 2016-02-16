@@ -16,4 +16,8 @@ graffiti.controller('GraffitiController', function() {
     ]
   };
 
+  self.paint = function(column, row, newColour) {
+    (self.graffiti.rows[row-1]).columns[column-1].colour = newColour
+  };
+
 });

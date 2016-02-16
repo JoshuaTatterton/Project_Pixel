@@ -3,14 +3,21 @@ describe("GraffitiController", function() {
   beforeEach(module("Graffiti"));
 
   var ctrl;
+  var black = "rgba(255, 255, 255, 1)";
 
   beforeEach(inject(function($controller) {
     ctrl = $controller("GraffitiController");
   }));
 
   it("has a 16x7 grid stored in it", function() {
-    expect(ctrl.graffiti).toEqual(f)
+    expect(ctrl.graffiti).toEqual(f);
   });
+
+  it("can change the colour of a pixel", function() {
+    ctrl.paint(5,7,"rgba(255, 255, 255, 1)");
+    expect((ctrl.graffiti.rows[6]).columns[4].colour).toEqual("rgba(255, 255, 255, 1)");
+  });
+
 });
 
 var f = { 

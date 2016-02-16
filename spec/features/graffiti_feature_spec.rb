@@ -33,6 +33,11 @@ feature "graffiti" do
         end
       end
     end
+    scenario "clicking a pixel can change its colour", js: true do
+      visit "/graffiti"
+      click_button "23"
+      expect(page.find_by_id("23").native.css_value("background-color")).to eq("rgba(0, 0, 0, 1)")
+    end
   end
 
 end
