@@ -5,7 +5,9 @@
   </head>
 
   <body ng-controller="GraffitiController as ctrl">
+    <button id="changecolour" ng-click="ctrl.palletSwitch()"></button>
     <button id="gridswitch" ng-click="ctrl.gridSwitch()">Grid On/Off</button>
+    <div class="colourpallet" style="display:{{ctrl.palletDisplay}}">Hello World</div>
     <div class="grid">
       <ul class="vertical">
         <li ng-repeat="row in ctrl.graffiti.rows" class="vertical" id="v{{row.no}}">

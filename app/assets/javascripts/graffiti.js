@@ -15,8 +15,13 @@ graffiti.controller('GraffitiController', function() {
       {"no":7, "columns":[{"no": 1, "colour": "rgba(192,192,192,1)"}, {"no": 2, "colour": "rgba(192,192,192,1)"},{"no": 3, "colour": "rgba(192,192,192,1)"},{"no": 4, "colour": "rgba(192,192,192,1)"},{"no": 5, "colour": "rgba(192,192,192,1)"},{"no": 6, "colour": "rgba(192,192,192,1)"},{"no": 7, "colour": "rgba(192,192,192,1)"},{"no": 8, "colour": "rgba(192,192,192,1)"},{"no": 9, "colour": "rgba(192,192,192,1)"},{"no": 10, "colour": "rgba(192,192,192,1)"},{"no": 11, "colour": "rgba(192,192,192,1)"},{"no": 12, "colour": "rgba(192,192,192,1)"},{"no": 13, "colour": "rgba(192,192,192,1)"},{"no": 14, "colour": "rgba(192,192,192,1)"},{"no": 15, "colour": "rgba(192,192,192,1)"},{"no": 16, "colour": "rgba(192,192,192,1)"}]}
     ]
   };
-
+  
   self.grid = true;
+  self.palletDisplay = "none";
+
+  self.paint = function(column, row, newColour) {
+    (self.graffiti.rows[row-1]).columns[column-1].colour = newColour
+  };
   
   self.gridSwitch = function() {
     self.grid = !self.grid
@@ -30,8 +35,12 @@ graffiti.controller('GraffitiController', function() {
     } 
   };
 
-  self.paint = function(column, row, newColour) {
-    (self.graffiti.rows[row-1]).columns[column-1].colour = newColour
+  self.palletSwitch = function() {
+    if(self.palletDisplay=="none") {
+      self.palletDisplay="block";
+    } else {
+      self.palletDisplay="none";
+    }
   };
 
 });

@@ -23,13 +23,13 @@ describe("GraffitiController", function() {
   });
 
   it("can switch the grid off", function() {
-    ctrl.gridSwitch()
+    ctrl.gridSwitch();
     expect(ctrl.grid).toBeFalsy();
   });
 
   it("can switch the grid back on", function() {
-    ctrl.gridSwitch()
-    ctrl.gridSwitch()
+    ctrl.gridSwitch();
+    ctrl.gridSwitch();
     expect(ctrl.grid).toBeTruthy();
   });
 
@@ -38,10 +38,19 @@ describe("GraffitiController", function() {
   });
 
   it("the grid becomes the colour of the block", function() {
-    ctrl.gridSwitch()
+    ctrl.gridSwitch();
     expect(ctrl.gridColour(1,1)).toEqual("rgba(192,192,192,1)");
   });
 
+  it("the colour pallet can be switched to be shown", function() {
+    ctrl.palletSwitch();
+    expect(ctrl.palletDisplay).toEqual("block");
+  });
+  it("the colour pallet can be switched back off", function() {
+    ctrl.palletSwitch();
+    ctrl.palletSwitch();
+    expect(ctrl.palletDisplay).toEqual("none");
+  });
 });
 
 var f = { 
