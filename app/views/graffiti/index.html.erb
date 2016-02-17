@@ -5,15 +5,25 @@
   </head>
 
   <body ng-controller="GraffitiController as ctrl">
-    <button id="changecolour" ng-click="ctrl.palletSwitch()"></button>
+    <button id="changecolour" ng-click="ctrl.palletSwitch()">Colour Pallet</button>
     <button id="gridswitch" ng-click="ctrl.gridSwitch()">Grid On/Off</button>
-    <div class="colourpallet" style="display:{{ctrl.palletDisplay}}">Hello World</div>
+    <div class="colourpallet" style="display:{{ctrl.palletDisplay}}">
+      <ul class="vertical">
+        <li ng-repeat="row in ctrl.pallet.rows" class="vertical">
+          <ul class="horizontal">
+            <li ng-repeat="column in row.columns" class="horizontal">
+              <button class="pixel" ng-click="ctrl.changeColour(column)" id="{{column}}" style="background-color:{{column}};border-color:rgba(0, 0, 0, 1)"></button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <div class="grid">
       <ul class="vertical">
         <li ng-repeat="row in ctrl.graffiti.rows" class="vertical" id="v{{row.no}}">
           <ul class="horizontal">
             <li ng-repeat="column in row.columns" class="horizontal" id="h{{column.no}}">
-              <button class="pixel" ng-click="ctrl.paint(column.no, row.no, 'rgba(0, 0, 0, 1)')" id="{{column.no}}{{row.no}}" style="background-color:{{column.colour}};border-color:{{ctrl.gridColour(column.no,row.no)}}"></button>
+              <button class="pixel" ng-click="ctrl.paint(column.no, row.no)" id="{{column.no}}{{row.no}}" style="background-color:{{column.colour}};border-color:{{ctrl.gridColour(column.no,row.no)}}"></button>
             </li>
           </ul>
         </li>

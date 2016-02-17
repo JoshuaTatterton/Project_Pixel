@@ -55,15 +55,27 @@ feature "graffiti" do
           scenario "on page load", js: true do
             expect(page).not_to have_css("div.colourpallet")
           end
+          scenario "after opening and closing", js: true do
+            click_button "changecolour"
+            click_button "changecolour"
+            expect(page).not_to have_css("div.colourpallet")
+          end
         end
       end
-      xscenario "the colour that you draw with can be changed", js: true do
+      scenario "the colour that you draw with can be changed", js: true do
         click_button "changecolour"
-        click_button "rgba(0, 255, 125, 1)"
-        click_button "107"
-        expect(page.find_by_id("107").native.css_value("background-color")).to eq("rgba(255, 0, 0, 1)")
+        for i in 1..16
+          click_button pallet[i-1]
+          click_button "107"
+          expect(page.find_by_id("107").native.css_value("background-color")).to eq(pallet[i-1])
+        end
       end
     end
   end
-
+  let(:pallet) {
+    ["rgba(255, 0, 0, 1)", "rgba(255, 125, 0, 1)", "rgba(255, 255, 0, 1)", "rgba(255, 255, 255, 1)",
+    "rgba(0, 255, 125, 1)", "rgba(0, 255, 0, 1)", "rgba(125, 255, 0, 1)", "rgba(170, 170, 170, 1)", 
+    "rgba(0, 255, 255, 1)", "rgba(0, 125, 255, 1)", "rgba(0, 0, 255, 1)", "rgba(85, 85, 85, 1)",
+    "rgba(255, 0, 125, 1)", "rgba(255, 0, 255, 1)", "rgba(125, 0, 255, 1)", "rgba(0, 0, 0, 1)"]
+  }
 end
