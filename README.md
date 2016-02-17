@@ -7,7 +7,7 @@ I would like to be able to port this to a phone app at some point.
 
 #### Current Version
 
-The current version is very basic and allows you so simply paint black onto the background and can be found [here](https://powerful-caverns-70125.herokuapp.com).
+The current version is basic and allows you to paint onto the background with various colours. [The website can be found here](https://powerful-caverns-70125.herokuapp.com).
 
 #### Technologies Used
 
