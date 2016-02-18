@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "graffiti" do
-
   context "can be" do
     scenario "created" do
       expect { Graffiti.create } .not_to raise_error
@@ -79,6 +78,12 @@ feature "graffiti" do
       end
       
     end
+    # xscenario "colours can be drawn by dragging from one point", js: true do
+    #   page.find_by_id("2x2").drag_to(page.find_by_id("2x9"))
+    #   for j in 2..9
+    #     expect(page.find_by_id("2x#{j}").native.css_value("background-color")).to eq("rgba(0, 0, 0, 1)")
+    #   end
+    # end
     scenario "you can choose to rub something out to the default colour", js: true do
       click_button "2x2"
       click_button "rubber"

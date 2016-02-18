@@ -7,6 +7,7 @@ graffiti.controller('GraffitiController', function() {
   self.grid = true;
   self.palletDisplay = false;
   self.currentColour = "rgba(0, 0, 0, 1)";
+  self.clicked = false;
   self.graffiti = { 
     "rows":[
       {"no":1, "columns":[{"no": 1, "colour": "rgba(192,192,192,1)"}, {"no": 2, "colour": "rgba(192,192,192,1)"},{"no": 3, "colour": "rgba(192,192,192,1)"},{"no": 4, "colour": "rgba(192,192,192,1)"},{"no": 5, "colour": "rgba(192,192,192,1)"},{"no": 6, "colour": "rgba(192,192,192,1)"},{"no": 7, "colour": "rgba(192,192,192,1)"},{"no": 8, "colour": "rgba(192,192,192,1)"},{"no": 9, "colour": "rgba(192,192,192,1)"},{"no": 10, "colour": "rgba(192,192,192,1)"},{"no": 11, "colour": "rgba(192,192,192,1)"},{"no": 12, "colour": "rgba(192,192,192,1)"},{"no": 13, "colour": "rgba(192,192,192,1)"},{"no": 14, "colour": "rgba(192,192,192,1)"},{"no": 15, "colour": "rgba(192,192,192,1)"},{"no": 16, "colour": "rgba(192,192,192,1)"},{"no": 17, "colour": "rgba(192,192,192,1)"}, {"no": 18, "colour": "rgba(192,192,192,1)"},{"no": 19, "colour": "rgba(192,192,192,1)"},{"no": 20, "colour": "rgba(192,192,192,1)"},{"no": 21, "colour": "rgba(192,192,192,1)"},{"no": 22, "colour": "rgba(192,192,192,1)"},{"no": 23, "colour": "rgba(192,192,192,1)"},{"no": 24, "colour": "rgba(192,192,192,1)"},{"no": 25, "colour": "rgba(192,192,192,1)"},{"no": 26, "colour": "rgba(192,192,192,1)"},{"no": 27, "colour": "rgba(192,192,192,1)"},{"no": 28, "colour": "rgba(192,192,192,1)"}]},
@@ -35,7 +36,9 @@ graffiti.controller('GraffitiController', function() {
   };
   
   self.paint = function(column, row) {
-    (self.graffiti.rows[row-1]).columns[column-1].colour = self.currentColour
+    if(self.clicked) {
+      (self.graffiti.rows[row-1]).columns[column-1].colour = self.currentColour
+    }
   };
   
   self.gridSwitch = function() {
@@ -57,5 +60,14 @@ graffiti.controller('GraffitiController', function() {
   self.changeColour = function(newColour) {
     self.currentColour = newColour;
   };
+
+  self.begin = function(column, row) {
+    self.clicked = true;
+    self.paint(column, row)
+  };
+
+  self.release = function() {
+    self.clicked = false;
+  }
 
 });

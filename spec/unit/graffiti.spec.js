@@ -13,6 +13,7 @@ describe("GraffitiController", function() {
   });
 
   it("can change the colour of a pixel", function() {
+    ctrl.clicked = true;
     ctrl.paint(5,7);
     expect((ctrl.graffiti.rows[6]).columns[4].colour).toEqual("rgba(0, 0, 0, 1)");
   });
@@ -64,6 +65,22 @@ describe("GraffitiController", function() {
   it("has the pallet stored in it", function() {
     expect(ctrl.pallet).toEqual(pallet)
   });
+
+  it("it not clicked by default", function() {
+    expect(ctrl.clicked).toEqual(false)
+  });
+
+  it("it knows it is clicked", function() {
+    ctrl.begin(1,1)
+    expect(ctrl.clicked).toEqual(true)
+  });
+
+  it("it can stop being clicked", function() {
+    ctrl.begin(1,1)
+    ctrl.release()
+    expect(ctrl.clicked).toEqual(false)
+  });
+
 });
 
 var grid = { 

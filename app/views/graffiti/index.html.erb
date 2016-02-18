@@ -19,12 +19,12 @@
         </li>
       </ul>
     </div>
-    <div class="grid">
+    <div class="grid" ng-mouseleave="ctrl.release()">
       <ul class="vertical">
         <li ng-repeat="row in ctrl.graffiti.rows" class="vertical" id="v{{row.no}}">
           <ul class="horizontal">
             <li ng-repeat="column in row.columns" class="horizontal" id="h{{column.no}}">
-              <button class="pixel" ng-mousedown="ctrl.paint(column.no, row.no)" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};border-color:{{ctrl.gridColour(column.no,row.no)}}"></button>
+              <button class="pixel" ng-mousedown="ctrl.begin(column.no, row.no)" ng-mouseenter="ctrl.paint(column.no, row.no)" ng-mouseup="ctrl.release()" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};border-color:{{ctrl.gridColour(column.no,row.no)}}"></button>
             </li>
           </ul>
         </li>
