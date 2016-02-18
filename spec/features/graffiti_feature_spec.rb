@@ -19,29 +19,29 @@ feature "graffiti" do
     scenario "there is a wall to draw on", js: true do
       expect(page).to have_css("div.grid")
     end
-    scenario "the wall has a 16 x 7 grid containing pixels", js: true do
-      for j in 1..7
-        for i in 1..16
-          expect(page).to have_button("#{i}#{j}")
+    scenario "the wall has a 28 x 14 grid containing pixels", js: true do
+      for j in 1..14
+        for i in 1..28
+          expect(page).to have_button("#{i}x#{j}")
         end
       end
     end
     scenario "the pixels are defaulted to a certain colour", js: true do
-      for j in 1..7
-        for i in 1..16
-          expect(page.find_by_id("#{i}#{j}").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
+      for j in 1..14
+        for i in 1..28
+          expect(page.find_by_id("#{i}x#{j}").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
         end
       end
     end
     scenario "clicking a pixel can change its colour", js: true do
-      click_button "23"
-      expect(page.find_by_id("23").native.css_value("background-color")).to eq("rgba(0, 0, 0, 1)")
+      click_button "2x3"
+      expect(page.find_by_id("2x3").native.css_value("background-color")).to eq("rgba(0, 0, 0, 1)")
     end
     scenario "the grid can be turned off", js: true do
       click_button "gridswitch"
-      for j in 1..7
-        for i in 1..16
-          expect(page.find_by_id("#{i}#{j}").native.css_value("border-color")).to eq("rgb(192, 192, 192)")
+      for j in 1..14
+        for i in 1..28
+          expect(page.find_by_id("#{i}x#{j}").native.css_value("border-color")).to eq("rgb(192, 192, 192)")
         end
       end
     end
@@ -60,29 +60,30 @@ feature "graffiti" do
             click_button "changecolour"
             expect(page).not_to have_css("div.colourpallet")
           end
+          scenario "after selecting a colour", js: true do
+            for i in 1..16
+              click_button "changecolour"
+              click_button pallet[i-1]
+              expect(page).not_to have_css("div.colourpallet")
+            end
+          end
         end
       end
       scenario "the colour that you draw with can be changed", js: true do
         for i in 1..16
           click_button "changecolour"
           click_button pallet[i-1]
-          click_button "107"
-          expect(page.find_by_id("107").native.css_value("background-color")).to eq(pallet[i-1])
+          click_button "10x7"
+          expect(page.find_by_id("10x7").native.css_value("background-color")).to eq(pallet[i-1])
         end
       end
-      scenario "the colourpallet goes after a colour is selected", js: true do
-        for i in 1..16
-          click_button "changecolour"
-          click_button pallet[i-1]
-          expect(page).not_to have_css("div.colourpallet")
-        end
-      end
+      
     end
-    scenario "you can choose to rub something out to default colour", js: true do
-      click_button "22"
+    scenario "you can choose to rub something out to the default colour", js: true do
+      click_button "2x2"
       click_button "rubber"
-      click_button "22"
-      expect(page.find_by_id("22").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
+      click_button "2x2"
+      expect(page.find_by_id("2x2").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
     end
   end
   let(:pallet) {
