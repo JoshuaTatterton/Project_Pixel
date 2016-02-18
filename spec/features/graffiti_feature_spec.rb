@@ -63,11 +63,18 @@ feature "graffiti" do
         end
       end
       scenario "the colour that you draw with can be changed", js: true do
-        click_button "changecolour"
         for i in 1..16
+          click_button "changecolour"
           click_button pallet[i-1]
           click_button "107"
           expect(page.find_by_id("107").native.css_value("background-color")).to eq(pallet[i-1])
+        end
+      end
+      scenario "the colourpallet goes after a colour is selected", js: true do
+        for i in 1..16
+          click_button "changecolour"
+          click_button pallet[i-1]
+          expect(page).not_to have_css("div.colourpallet")
         end
       end
     end

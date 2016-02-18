@@ -5,14 +5,14 @@
   </head>
 
   <body ng-controller="GraffitiController as ctrl">
-    <button id="changecolour" ng-click="ctrl.palletSwitch()">Colour Pallet</button>
+    <button id="changecolour" ng-click="ctrl.palletSwitch()" style="border-color:{{ctrl.currentColour}}">Colour Pallet</button>
     <button id="gridswitch" ng-click="ctrl.gridSwitch()">Grid On/Off</button>
     <div class="colourpallet" style="display:{{ctrl.palletDisplay}}">
       <ul class="vertical">
         <li ng-repeat="row in ctrl.pallet.rows" class="vertical">
           <ul class="horizontal">
             <li ng-repeat="column in row.columns" class="horizontal">
-              <button class="pixel" ng-click="ctrl.changeColour(column)" id="{{column}}" style="background-color:{{column}};border-color:rgba(0, 0, 0, 1)"></button>
+              <button class="pixel" ng-click="ctrl.changeColour(column);ctrl.palletSwitch()" id="{{column}}" style="background-color:{{column}};border-color:rgba(0, 0, 0, 1)"></button>
             </li>
           </ul>
         </li>
