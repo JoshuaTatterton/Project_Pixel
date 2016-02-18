@@ -78,6 +78,12 @@ feature "graffiti" do
         end
       end
     end
+    scenario "you can choose to rub something out to default colour", js: true do
+      click_button "22"
+      click_button "rubber"
+      click_button "22"
+      expect(page.find_by_id("22").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
+    end
   end
   let(:pallet) {
     ["rgba(255, 0, 0, 1)", "rgba(255, 125, 0, 1)", "rgba(255, 255, 0, 1)", "rgba(255, 255, 255, 1)",
