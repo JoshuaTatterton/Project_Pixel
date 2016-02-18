@@ -43,13 +43,13 @@ describe("GraffitiController", function() {
 
   it("the colour pallet can be switched to be shown", function() {
     ctrl.palletSwitch();
-    expect(ctrl.palletDisplay).toEqual("block");
+    expect(ctrl.palletDisplay).toEqual(true);
   });
 
   it("the colour pallet can be switched back off", function() {
     ctrl.palletSwitch();
     ctrl.palletSwitch();
-    expect(ctrl.palletDisplay).toEqual("none");
+    expect(ctrl.palletDisplay).toEqual(false);
   });
 
   it("the default current colour is black", function() {

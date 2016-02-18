@@ -5,7 +5,7 @@ graffiti.controller('GraffitiController', function() {
   var self = this;
   
   self.grid = true;
-  self.palletDisplay = "none";
+  self.palletDisplay = false;
   self.currentColour = "rgba(0, 0, 0, 1)";
   self.graffiti = { 
     "rows":[
@@ -51,11 +51,7 @@ graffiti.controller('GraffitiController', function() {
   };
 
   self.palletSwitch = function() {
-    if(self.palletDisplay=="none") {
-      self.palletDisplay="block";
-    } else {
-      self.palletDisplay="none";
-    }
+    self.palletDisplay= !self.palletDisplay;
   };
 
   self.changeColour = function(newColour) {
