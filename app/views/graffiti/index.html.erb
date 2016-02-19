@@ -5,29 +5,33 @@
   </head>
 
   <body ng-controller="GraffitiController as ctrl">
-    <button id="changecolour" ng-click="ctrl.palletSwitch()" style="border-color:{{ctrl.currentColour}}">Colour Pallet</button>
-    <button id="gridswitch" ng-click="ctrl.gridSwitch()">Grid On/Off</button>
-    <button id="rubber" ng-click="ctrl.changeColour('rgba(192, 192, 192, 1)')">Rubber</button>
-    <div class="colourpallet" ng-show="ctrl.palletDisplay">
-      <ul class="vertical">
-        <li ng-repeat="row in ctrl.pallet.rows" class="vertical">
-          <ul class="horizontal">
-            <li ng-repeat="column in row.columns" class="horizontal">
-              <button class="pixel" ng-click="ctrl.changeColour(column);ctrl.palletSwitch()" id="{{column}}" style="background-color:{{column}};border-color:rgba(0, 0, 0, 1)"></button>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="grid" ng-mouseleave="ctrl.release()">
-      <ul class="vertical">
-        <li ng-repeat="row in ctrl.graffiti.rows" class="vertical" id="v{{row.no}}">
-          <ul class="horizontal">
-            <li ng-repeat="column in row.columns" class="horizontal" id="h{{column.no}}">
-              <button class="pixel" ng-mousedown="ctrl.begin(column.no, row.no)" ng-mouseenter="ctrl.paint(column.no, row.no)" ng-mouseup="ctrl.release()" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};border-color:{{ctrl.gridColour(column.no,row.no)}}"></button>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div class="page_container">
+      <div class="button_container">
+        <button class="btn" id="changecolour" ng-click="ctrl.palletSwitch()" style="border-color:{{ctrl.currentColour}}">Colour Pallet</button>
+        <button class="btn" id="gridswitch" ng-click="ctrl.gridSwitch()">Grid On/Off</button>
+        <button class="btn" id="rubber" ng-click="ctrl.changeColour('rgba(192, 192, 192, 1)')">Rubber</button>
+      </div>
+      <div class="grid" ng-mouseleave="ctrl.release()">
+        <ul class="vertical">
+          <li ng-repeat="row in ctrl.graffiti.rows" class="vertical" id="v{{row.no}}">
+            <ul class="horizontal">
+              <li ng-repeat="column in row.columns" class="horizontal" id="h{{column.no}}">
+                <button class="pixel" ng-mousedown="ctrl.begin(column.no, row.no)" ng-mouseenter="ctrl.paint(column.no, row.no)" ng-mouseup="ctrl.release()" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};border-color:{{ctrl.gridColour(column.no,row.no)}}"></button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="colourpallet" ng-show="ctrl.palletDisplay">
+        <ul class="vertical">
+          <li ng-repeat="row in ctrl.pallet.rows" class="vertical">
+            <ul class="horizontal">
+              <li ng-repeat="column in row.columns" class="horizontal">
+                <button class="pixel" ng-click="ctrl.changeColour(column);ctrl.palletSwitch()" id="{{column}}" style="background-color:{{column}};border-color:rgba(0, 0, 0, 1)"></button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
