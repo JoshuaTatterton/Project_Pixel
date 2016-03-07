@@ -13,7 +13,8 @@ feature "graffiti" do
 
   context "when drawing graffiti" do
     before(:each) do
-      visit "/graffiti"
+      visit "/"
+      click_link "new_graffiti"
     end
     scenario "there is a wall to draw on", js: true do
       expect(page).to have_css("div.grid")
