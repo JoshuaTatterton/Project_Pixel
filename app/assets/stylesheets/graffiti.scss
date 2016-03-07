@@ -12,19 +12,33 @@ body {
   width: 580px;
 }
 .button_container {
-
+  display: block;
+  padding: 0 10px 0 10px;
+  margin: auto;
+  height: 20px;
+  width: 580px;
 }
 .btn {
-
+  display: inline-block;
+  float: left;
+  padding: auto 10px auto 10px;
+  height: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: DodgerBlue;
+  
 }
 .colourpallet {
   position: absolute;
-  top: 35px;
-  left: 25px;
+  top: 15px;
+  left: -225px;
 }
 .grid {
-  position: inline-block;
-  margin: auto;
+  display: block;
+  margin: -10px auto 0 auto;
   height: 280px;
   width: 560px;
 }
