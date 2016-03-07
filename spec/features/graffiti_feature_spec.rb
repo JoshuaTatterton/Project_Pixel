@@ -3,10 +3,11 @@ require "rails_helper"
 feature "graffiti" do
   context "can be" do
     scenario "created" do
-      expect { Graffiti.create } .not_to raise_error
+      graffiti = Graffiti.create(drawing: drawing)
+      expect(graffiti.errors.full_messages.to_sentence).to eq ""
     end
     scenario "saved to database" do
-      Graffiti.create
+      Graffiti.create(drawing: drawing)
       expect(Graffiti.all.count).to eq 1
     end
   end
@@ -98,4 +99,5 @@ feature "graffiti" do
     "rgba(0, 255, 255, 1)", "rgba(0, 125, 255, 1)", "rgba(0, 0, 255, 1)", "rgba(85, 85, 85, 1)",
     "rgba(255, 0, 125, 1)", "rgba(255, 0, 255, 1)", "rgba(125, 0, 255, 1)", "rgba(0, 0, 0, 1)"]
   }
+  let(:drawing) { double :drawing }
 end

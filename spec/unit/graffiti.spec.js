@@ -8,7 +8,7 @@ describe("GraffitiController", function() {
     ctrl = $controller("GraffitiController");
   }));
 
-  it("has a 16x7 grid stored in it", function() {
+  it("has a 28x14 grid stored in it", function() {
     expect(ctrl.graffiti).toEqual(grid);
   });
 
