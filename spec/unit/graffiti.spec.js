@@ -6,6 +6,16 @@ describe("GraffitiController", function() {
 
   beforeEach(inject(function($controller) {
     ctrl = $controller("GraffitiController");
+
+  }));
+
+  var httpBackend;
+  
+  beforeEach(inject(function($httpBackend) {
+    httpBackend = $httpBackend
+    httpBackend.when('GET', '/graffiti/1').respond(grid);
+    ctrl.initialize("1");
+    httpBackend.flush();
   }));
 
   it("has a 28x14 grid stored in it", function() {
@@ -110,4 +120,3 @@ var pallet = {
     {"columns":["rgba(255, 0, 125, 1)", "rgba(255, 0, 255, 1)", "rgba(125, 0, 255, 1)", "rgba(0, 0, 0, 1)"]}
   ]
 };
-

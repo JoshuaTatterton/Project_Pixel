@@ -4,7 +4,7 @@
     <title>Graffiti</title>
   </head>
 
-  <body ng-controller="GraffitiController as ctrl">
+  <body ng-controller="GraffitiController as ctrl" ng-init="ctrl.initialize(<%= @graffiti.id %>)">
     <div class="page_container">
       <div class="button_container">
         <button class="btn" id="changecolour" ng-click="ctrl.palletSwitch()" style="border-color:{{ctrl.currentColour}}">Colour Pallet</button>
