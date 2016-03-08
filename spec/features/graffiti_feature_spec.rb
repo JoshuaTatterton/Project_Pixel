@@ -123,6 +123,14 @@ feature "graffiti" do
         click_button "Done"
         expect(current_path).to eq "/"
       end
+      scenario "when you click draw", js: true do
+        i = 12
+        j = 8
+        click_button "#{i}x#{j}"
+        graffiti = Graffiti.last
+        json = JSON.parse(graffiti.drawing)
+        expect(json["rows"][j-1]["columns"][i-1]["colour"]).to eq "rgba(0, 0, 0, 1)"
+      end
     end
   end
   let(:pallet) {

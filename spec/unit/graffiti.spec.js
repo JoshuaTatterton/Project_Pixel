@@ -110,14 +110,20 @@ describe("GraffitiController", function() {
 
   it("finish saves", function() {
     spyOn(ctrl, "save").and.callFake(function(){});
-    ctrl.finish("1");
+    ctrl.finish();
     expect(ctrl.save).toHaveBeenCalledWith("1");
   });
 
   it("finish redirects the page", function() {
     spyOn(ctrl, "redirect").and.callFake(function(){});
-    ctrl.finish("1");
+    ctrl.finish();
     expect(ctrl.redirect).toHaveBeenCalledWith("/");
+  });
+
+  it("saves when releasing", function() {
+    spyOn(ctrl, "save").and.callFake(function(){});
+    ctrl.release();
+    expect(ctrl.save).toHaveBeenCalledWith("1");
   });
 
 });

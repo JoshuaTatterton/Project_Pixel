@@ -5,6 +5,7 @@ graffiti.controller("GraffitiController", function($http, $window) {
   var self = this;
 
   self.initialize = function(id) {
+    self.iD = id;
     $http.get("/graffiti/"+id).then(function successCallback(response) {
       self.graffiti = response.data;
     });
@@ -57,6 +58,7 @@ graffiti.controller("GraffitiController", function($http, $window) {
 
   self.release = function() {
     self.clicked = false;
+    self.save(self.iD);
   };
 
   self.save = function(id) {
@@ -69,8 +71,8 @@ graffiti.controller("GraffitiController", function($http, $window) {
     $window.location.replace(url)
   };
 
-  self.finish = function(id) {
-    self.save(id)
+  self.finish = function() {
+    self.save(self.iD)
     self.redirect("/")
   };
 

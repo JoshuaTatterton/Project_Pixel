@@ -10,7 +10,7 @@
         <button class="btn" id="changecolour" ng-click="ctrl.palletSwitch()" style="border-color:{{ctrl.currentColour}}">Colour Pallet</button>
         <button class="btn" id="gridswitch" ng-click="ctrl.gridSwitch()">Grid On/Off</button>
         <button class="btn" id="rubber" ng-click="ctrl.changeColour('rgba(192, 192, 192, 1)')">Eraser</button>
-        <button class="btn" id="done" ng-click="ctrl.finish(<%= @graffiti.id %>)">Done</button>
+        <button class="btn" id="done" ng-click="ctrl.finish()">Done</button>
       </div>
       <div class="grid" ng-mouseleave="ctrl.release()">
         <ul class="vertical">
