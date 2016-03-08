@@ -16,7 +16,7 @@ body {
   padding: 0 10px 0 10px;
   margin: auto;
   height: 20px;
-  width: 580px;
+  width: 560px;
 }
 .btn {
   display: inline-block;
@@ -29,7 +29,9 @@ body {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: DodgerBlue;
-  
+}
+.btn#done {
+  float: right;
 }
 .colourpallet {
   position: absolute;

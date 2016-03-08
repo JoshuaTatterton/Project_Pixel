@@ -12,6 +12,16 @@ class GraffitiController < ApplicationController
     render json: show_json
   end
 
+  def update
+    @graffiti = Graffiti.find(params[:id])
+    @graffiti.update(graffiti_params)
+    render json: show_json
+  end
+
+  def graffiti_params
+    params.require(:graffiti).permit(:drawing)
+  end
+
   def show_json
     "#{@graffiti.drawing}"
   end
@@ -36,4 +46,5 @@ class GraffitiController < ApplicationController
       ]
     }'
   end
+  
 end

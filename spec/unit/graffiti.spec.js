@@ -3,20 +3,26 @@ describe("GraffitiController", function() {
   beforeEach(module("Graffiti"));
 
   var ctrl;
-
-  beforeEach(inject(function($controller) {
-    ctrl = $controller("GraffitiController");
-
-  }));
-
+  var $window;
   var httpBackend;
+
+  beforeEach(function() {
+    $window = { location: { replace: jasmine.createSpy() } };
+
+    module(function($provide) {
+      $provide.value("$window", $window);
+    });
   
-  beforeEach(inject(function($httpBackend) {
-    httpBackend = $httpBackend
-    httpBackend.when('GET', '/graffiti/1').respond(grid);
-    ctrl.initialize("1");
-    httpBackend.flush();
-  }));
+    inject(function($controller, $httpBackend) {
+      ctrl = $controller("GraffitiController");
+
+      httpBackend = $httpBackend;
+      httpBackend.when('GET', '/graffiti/1').respond(grid);
+      
+      ctrl.initialize("1");
+      httpBackend.flush();
+    });
+  });
 
   it("has a 28x14 grid stored in it", function() {
     expect(ctrl.graffiti).toEqual(grid);
@@ -76,7 +82,7 @@ describe("GraffitiController", function() {
     expect(ctrl.pallet).toEqual(pallet)
   });
 
-  it("it not clicked by default", function() {
+  it("is not clicked by default", function() {
     expect(ctrl.clicked).toEqual(false)
   });
 
@@ -89,6 +95,29 @@ describe("GraffitiController", function() {
     ctrl.begin(1,1)
     ctrl.release()
     expect(ctrl.clicked).toEqual(false)
+  });
+
+  it("save sends update request", inject(function($http) {
+    spyOn($http, "patch").and.callThrough();
+    ctrl.save("1");
+    expect($http.patch).toHaveBeenCalled();
+  }));
+
+  it("redirect changes the current page", function() {
+    ctrl.redirect("/");
+    expect($window.location.replace).toHaveBeenCalledWith("/");
+  });
+
+  it("finish saves", function() {
+    spyOn(ctrl, "save").and.callFake(function(){});
+    ctrl.finish("1");
+    expect(ctrl.save).toHaveBeenCalledWith("1");
+  });
+
+  it("finish redirects the page", function() {
+    spyOn(ctrl, "redirect").and.callFake(function(){});
+    ctrl.finish("1");
+    expect(ctrl.redirect).toHaveBeenCalledWith("/");
   });
 
 });

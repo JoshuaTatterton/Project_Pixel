@@ -1,6 +1,6 @@
 var graffiti = angular.module("Graffiti", ["ngResource"]);
 
-graffiti.controller("GraffitiController", function($http) {
+graffiti.controller("GraffitiController", function($http, $window) {
   
   var self = this;
 
@@ -57,6 +57,21 @@ graffiti.controller("GraffitiController", function($http) {
 
   self.release = function() {
     self.clicked = false;
+  };
+
+  self.save = function(id) {
+    var params = { drawing: angular.toJson(self.graffiti) };
+    var request = $http.patch("/graffiti/"+id, params).then(function successCallback(response) {
+    });
+  };
+
+  self.redirect = function(url) {
+    $window.location.replace(url)
+  };
+
+  self.finish = function(id) {
+    self.save(id)
+    self.redirect("/")
   };
 
 });

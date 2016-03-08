@@ -1,4 +1,5 @@
 require "rails_helper"
+require "json"
 
 feature "graffiti" do
   context "can be" do
@@ -103,6 +104,25 @@ feature "graffiti" do
       click_button "rubber"
       click_button "2x2"
       expect(page.find_by_id("2x2").native.css_value("background-color")).to eq("rgba(192, 192, 192, 1)")
+    end
+    context "graffiti is saved" do
+      before(:each) do
+        visit "/"
+        click_link "new_graffiti"
+      end
+      scenario "when you click the done button", js: true do 
+        i = 4
+        j = 7
+        click_button "#{i}x#{j}"
+        click_button "Done"
+        graffiti = Graffiti.last
+        json = JSON.parse(graffiti.drawing)
+        expect(json["rows"][j-1]["columns"][i-1]["colour"]).to eq "rgba(0, 0, 0, 1)"
+      end
+      scenario "after clicking done you go back to '/'", js: true do
+        click_button "Done"
+        expect(current_path).to eq "/"
+      end
     end
   end
   let(:pallet) {
