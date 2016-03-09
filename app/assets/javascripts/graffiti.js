@@ -4,11 +4,9 @@ graffiti.controller("GraffitiController", function($http, $window) {
   
   var self = this;
 
-  self.initialize = function(id) {
+  self.initialize = function(id, grid) {
     self.iD = id;
-    $http.get("/graffiti/"+id).then(function successCallback(response) {
-      self.graffiti = response.data;
-    });
+    self.graffiti = angular.fromJson(grid);
   };
 
   self.grid = true;

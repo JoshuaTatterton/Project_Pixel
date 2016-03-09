@@ -13,14 +13,10 @@ describe("GraffitiController", function() {
       $provide.value("$window", $window);
     });
   
-    inject(function($controller, $httpBackend) {
+    inject(function($controller) {
       ctrl = $controller("GraffitiController");
-
-      httpBackend = $httpBackend;
-      httpBackend.when('GET', '/graffiti/1').respond(grid);
       
-      ctrl.initialize("1");
-      httpBackend.flush();
+      ctrl.initialize("1", grid);
     });
   });
 
