@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "wall#index"
-  get "wall" => "wall#index"
+  resources :wall
   resources :graffiti
 
   # The priority is based upon order of creation: first created -> highest priority.

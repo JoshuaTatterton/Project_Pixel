@@ -1,12 +1,12 @@
-var graffiti = angular.module("Graffiti", ["ngResource"]);
+var graffiti = angular.module("Graffiti", ["ngResource", "LZW"]);
 
-graffiti.controller("GraffitiController", function($http, $window) {
+graffiti.controller("GraffitiController", function($http, $window, lzw) {
   
   var self = this;
 
   self.initialize = function(id, grid) {
     self.iD = id;
-    self.graffiti = angular.fromJson(grid);
+    self.assignGraffiti(grid);
   };
 
   self.grid = true;
@@ -60,7 +60,8 @@ graffiti.controller("GraffitiController", function($http, $window) {
   };
 
   self.save = function(id) {
-    var params = { drawing: angular.toJson(self.graffiti) };
+    var drawing = lzw.compress(angular.toJson(self.graffiti))
+    var params = { drawing: drawing };
     var request = $http.patch("/graffiti/"+id, params).then(function successCallback(response) {
     });
   };
@@ -72,6 +73,15 @@ graffiti.controller("GraffitiController", function($http, $window) {
   self.finish = function() {
     self.save(self.iD)
     self.redirect("/")
+  };
+
+  self.assignGraffiti = function(grid) {
+    try {
+      angular.fromJson(lzw.decompress(grid));
+    } catch (e) {
+      return self.graffiti = angular.fromJson(grid);
+    }
+    return self.graffiti = angular.fromJson(lzw.decompress(grid));
   };
 
 });

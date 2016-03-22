@@ -1,1 +1,12 @@
-<%= link_to "New Graffiti", new_graffiti_path, id: "new_graffiti" %>
+<div ng-app="Wall">
+  <div ng-controller="WallController as ctrl" ng-init="ctrl.init(<%= @wall.id %>)">
+    <div class="wall">
+      <div class="row" ng-repeat="row in ctrl.wall.rows">
+        <div class="column" ng-repeat="column in row.columns">
+          <button class="graffiti" id="{{column.no}}x{{row.no}}"></button>
+        </div>
+      </div>
+    </div>
+    <%= link_to "New Graffiti", new_graffiti_path, id: "new_graffiti" %>
+  </div>
+</div>

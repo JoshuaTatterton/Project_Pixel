@@ -2,6 +2,9 @@ require "rails_helper"
 require "json"
 
 feature "graffiti" do
+
+  before(:each) { Wall.create }
+  
   context "can be" do
     scenario "created" do
       graffiti = Graffiti.create(drawing: drawing)
@@ -113,11 +116,11 @@ feature "graffiti" do
       scenario "when you click the done button", js: true do 
         i = 4
         j = 7
+        old_drawing = Graffiti.last.drawing
         click_button "#{i}x#{j}"
         click_button "Done"
         graffiti = Graffiti.last
-        json = JSON.parse(graffiti.drawing)
-        expect(json["rows"][j-1]["columns"][i-1]["colour"]).to eq "rgba(0, 0, 0, 1)"
+        expect(graffiti.drawing).not_to eq old_drawing
       end
       scenario "after clicking done you go back to '/'", js: true do
         click_button "Done"
@@ -126,10 +129,11 @@ feature "graffiti" do
       scenario "when you click draw", js: true do
         i = 12
         j = 8
+        old_drawing = Graffiti.last.drawing
         click_button "#{i}x#{j}"
+        visit "/"
         graffiti = Graffiti.last
-        json = JSON.parse(graffiti.drawing)
-        expect(json["rows"][j-1]["columns"][i-1]["colour"]).to eq "rgba(0, 0, 0, 1)"
+        expect(graffiti.drawing).not_to eq old_drawing
       end
     end
   end

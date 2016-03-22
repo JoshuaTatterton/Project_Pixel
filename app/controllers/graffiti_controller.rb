@@ -5,6 +5,10 @@ class GraffitiController < ApplicationController
 
   def new
     @graffiti = Graffiti.create(drawing: new_graffiti)
+    @wall = Wall.last
+    @wall.graffitis << @graffiti
+    @wall.grid[10][10] = @graffiti.id
+    @wall.update(grid: @wall.grid)
   end
 
   def show
