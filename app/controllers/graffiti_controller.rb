@@ -9,11 +9,16 @@ class GraffitiController < ApplicationController
     @wall.graffitis << @graffiti
     @wall.grid[10][10] = @graffiti.id
     @wall.update(grid: @wall.grid)
+    redirect_to edit_graffiti_path(@graffiti)
   end
 
   def show
     @graffiti = Graffiti.find(params[:id])
     render json: show_json
+  end
+
+  def edit
+    @graffiti = Graffiti.find(params[:id])
   end
 
   def update
