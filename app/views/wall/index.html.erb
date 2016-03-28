@@ -1,9 +1,17 @@
 <div ng-app="Wall">
-  <div ng-controller="WallController as ctrl" ng-init="ctrl.init(<%= @wall.id %>)">
+  <div ng-controller="WallController as ctrl" ng-init="ctrl.init(<%= @wall %>)">
     <div class="wall">
       <div class="row" ng-repeat="row in ctrl.wall.rows">
         <div class="column" ng-repeat="column in row.columns">
-          <button class="graffiti" id="{{column.no}}x{{row.no}}"></button>
+          <button class="graffiti" id="{{column.no}}x{{row.no}}">
+            <div class="graffiti_grid" ng-if="column.id != 0">
+              <div class="pixel_row" ng-repeat="prow in ctrl.graffiti[row.no-1][column.no-1].rows" id="row{{prow.no}}">
+                <div class="pixel_column" ng-repeat="pcolumn in prow.columns" id="column{{pcolumn.no}}">
+                  <div class="wall_pixel" id="{{pcolumn.no}}x{{prow.no}}id{{column.id}}" style="background-color:{{pcolumn.colour}};"></div>
+                </div>
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>

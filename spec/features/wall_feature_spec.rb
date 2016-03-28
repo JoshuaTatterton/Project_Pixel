@@ -14,11 +14,13 @@ feature "wall" do
     expect(page).to have_css("div.wall")
   end
   context "the wall" do
-    scenario "displays the graffiti", js: true do
-      visit "/"
+    scenario "has a space for the graffiti", js: true do
+      expect(page).to have_button "11x11"
+    end
+    scenario "the wall displays the graffiti", js: true do
       click_link "new_graffiti"
       visit "/"
-      expect(page).to have_button "11x11"
+      expect(page).to have_css("div.wall_pixel")
     end
   end
   let(:drawing) do

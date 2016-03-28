@@ -7,12 +7,47 @@
   margin: -10px auto 0 auto;
   height: 280px;
   width: 560px;
-  overflow: hidden;
+  overflow: show;
   text-align: centre;
+  white-space: nowrap;
 }
 .row {
+  height: 42px;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .column {
+  height: 42px;
+  width: 84px;
   display: inline-block;
+  vertical-align: top;
+}
+.graffiti {
+  white-space: normal;
+  height: 42px;
+  width: 84px;
+  display: inline-block;
+  background-color: #000099;
+  border-style: none;
+  padding: 0 0 0 0;
+}
+.graffiti_grid {
+  height: 42px;
+  width: 84px;
+  display: inline-block;
+}
+.pixel_row {
+  display: block;
+  height: 3px;
+  width: 84px;
+}
+.pixel_column {
+  height: 3px;
+  display: inline-block;
+}
+.wall_pixel {
+  margin-top: -9px;
+  height: 3px;
+  width: 3px;
 }

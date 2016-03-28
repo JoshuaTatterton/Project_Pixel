@@ -6,7 +6,7 @@ graffiti.controller("GraffitiController", function($http, $window, lzw) {
 
   self.initialize = function(id, grid) {
     self.iD = id;
-    self.assignGraffiti(grid);
+    self.graffiti = grid;
   };
 
   self.grid = true;
@@ -60,8 +60,8 @@ graffiti.controller("GraffitiController", function($http, $window, lzw) {
   };
 
   self.save = function(id) {
-    var drawing = lzw.compress(angular.toJson(self.graffiti))
-    var params = { drawing: drawing };
+    var drawing = angular.toJson(self.graffiti)
+    var params = { "drawing": drawing };
     var request = $http.patch("/graffiti/"+id, params).then(function successCallback(response) {
     });
   };
