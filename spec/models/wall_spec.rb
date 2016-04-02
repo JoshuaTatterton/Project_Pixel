@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe Wall, type: :model do
 
   it { is_expected.to have_many :graffitis }

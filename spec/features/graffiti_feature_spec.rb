@@ -1,4 +1,3 @@
-require "rails_helper"
 require "json"
 
 feature "graffiti" do
