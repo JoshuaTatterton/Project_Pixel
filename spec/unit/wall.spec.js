@@ -25,24 +25,30 @@ describe("WallController", function() {
 
   it("has the graffiti array stored in it", function() {
     array();
+
     expect(ctrl.graffiti).toEqual(graffitiArray);
   });
 
   it("calls self.fillGraffitiArray while initializing", function() {
     spyOn(ctrl, "fillGraffitiArray").and.callFake(function(){});
+    
     ctrl.init(1);
+
     expect(ctrl.fillGraffitiArray).toHaveBeenCalled();
   });
 
   it("calls the getGraffiti with the id of the graffiti", function() {
     spyOn(ctrl, "getGraffiti").and.callFake(function(){});
-    ctrl.fillGraffitiArray()
+
+    ctrl.fillGraffitiArray();
+
     expect(ctrl.getGraffiti).toHaveBeenCalledWith(1, 0, 0);
   });
 
   it("requests graffiti with getGraffiti", function() {
     ctrl.getGraffiti(1, 0, 0);
     httpBackend.flush();
+
     expect(ctrl.graffiti[0][0]).toEqual(dummygraffiti);
   });
 

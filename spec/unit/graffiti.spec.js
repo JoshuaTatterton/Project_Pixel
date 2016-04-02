@@ -27,6 +27,7 @@ describe("GraffitiController", function() {
   it("can change the colour of a pixel", function() {
     ctrl.clicked = true;
     ctrl.paint(5,7);
+
     expect((ctrl.graffiti.rows[6]).columns[4].colour).toEqual("rgba(0, 0, 0, 1)");
   });
 
@@ -36,12 +37,14 @@ describe("GraffitiController", function() {
 
   it("can switch the grid off", function() {
     ctrl.gridSwitch();
+
     expect(ctrl.grid).toBeFalsy();
   });
 
   it("can switch the grid back on", function() {
     ctrl.gridSwitch();
     ctrl.gridSwitch();
+
     expect(ctrl.grid).toBeTruthy();
   });
 
@@ -51,17 +54,20 @@ describe("GraffitiController", function() {
 
   it("the grid becomes the colour of the block", function() {
     ctrl.gridSwitch();
+
     expect(ctrl.gridColour(1,1)).toEqual("rgba(192,192,192,1)");
   });
 
   it("the colour pallet can be switched to be shown", function() {
     ctrl.palletSwitch();
+
     expect(ctrl.palletDisplay).toEqual(true);
   });
 
   it("the colour pallet can be switched back off", function() {
     ctrl.palletSwitch();
     ctrl.palletSwitch();
+
     expect(ctrl.palletDisplay).toEqual(false);
   });
 
@@ -71,54 +77,65 @@ describe("GraffitiController", function() {
 
   it("the current colour can be changed", function() {
     ctrl.changeColour("rgba(255, 125, 0, 1)");
+
     expect(ctrl.currentColour).toEqual("rgba(255, 125, 0, 1)");
   });
 
   it("has the pallet stored in it", function() {
-    expect(ctrl.pallet).toEqual(pallet)
+    expect(ctrl.pallet).toEqual(pallet);
   });
 
   it("is not clicked by default", function() {
-    expect(ctrl.clicked).toEqual(false)
+    expect(ctrl.clicked).toEqual(false);
   });
 
   it("it knows it is clicked", function() {
-    ctrl.begin(1,1)
-    expect(ctrl.clicked).toEqual(true)
+    ctrl.begin(1,1);
+
+    expect(ctrl.clicked).toEqual(true);
   });
 
   it("it can stop being clicked", function() {
-    ctrl.begin(1,1)
-    ctrl.release()
-    expect(ctrl.clicked).toEqual(false)
+    ctrl.begin(1,1);
+    ctrl.release();
+
+    expect(ctrl.clicked).toEqual(false);
   });
 
   it("save sends update request", inject(function($http) {
     spyOn($http, "patch").and.callThrough();
     ctrl.save("1");
+
     expect($http.patch).toHaveBeenCalled();
   }));
 
   it("redirect changes the current page", function() {
     ctrl.redirect("/");
+
     expect($window.location.replace).toHaveBeenCalledWith("/");
   });
 
   it("finish saves", function() {
     spyOn(ctrl, "save").and.callFake(function(){});
+
     ctrl.finish();
+
     expect(ctrl.save).toHaveBeenCalledWith("1");
   });
 
   it("finish redirects the page", function() {
     spyOn(ctrl, "redirect").and.callFake(function(){});
+
     ctrl.finish();
+
     expect(ctrl.redirect).toHaveBeenCalledWith("/");
   });
 
   it("saves when releasing", function() {
     spyOn(ctrl, "save").and.callFake(function(){});
+
     ctrl.release();
+
     expect(ctrl.save).toHaveBeenCalledWith("1");
   });
 
