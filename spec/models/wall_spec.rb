@@ -9,6 +9,42 @@ describe Wall, type: :model do
   it "can show a new graffiti" do
     expect(Graffiti.blank_graffiti).to eq new_graffiti
   end
+  context "can assign graffiti to the wall" do
+    it "assigns to the center of the wall first" do
+      expect(subject.grid[10][10]).to eq 0
+
+      subject.assign_graffiti(1)
+
+      expect(subject.grid[10][10]).to eq 1
+    end
+
+    it "assigns outwards from the center" do
+      subject.assign_graffiti(1)
+
+      4.times { subject.assign_graffiti(2) }
+
+      expect(subject.grid[11][10]).to eq 2
+      expect(subject.grid[9][10]).to eq 2
+      expect(subject.grid[10][11]).to eq 2
+      expect(subject.grid[10][9]).to eq 2
+    end
+
+    it "assigns in a diamond shape" do
+      subject.assign_graffiti(1)
+      4.times { subject.assign_graffiti(2) }
+
+      8.times { subject.assign_graffiti(3) }
+      
+      expect(subject.grid[10][12]).to eq 3
+      expect(subject.grid[10][8]).to eq 3
+      expect(subject.grid[12][10]).to eq 3
+      expect(subject.grid[8][10]).to eq 3
+      expect(subject.grid[9][9]).to eq 3
+      expect(subject.grid[11][11]).to eq 3
+      expect(subject.grid[11][9]).to eq 3
+      expect(subject.grid[9][11]).to eq 3
+    end
+  end
 
   let(:new_graffiti) do
     '{ 

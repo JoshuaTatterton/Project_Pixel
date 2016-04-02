@@ -5,11 +5,12 @@ class GraffitiController < ApplicationController
 
   def new
     wall = Wall.last
-    graffiti = wall.graffitis.create(drawing: Graffiti.blank_graffiti)
-    wall.grid[10][10] = graffiti.id
+    @graffiti = wall.graffitis.create(drawing: Graffiti.blank_graffiti)
+    
+    wall.assign_graffiti(@graffiti.id)
     wall.update(grid: wall.grid)
 
-    redirect_to edit_graffiti_path(graffiti)
+    render :edit
   end
 
   def show

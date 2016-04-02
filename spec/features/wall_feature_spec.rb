@@ -29,4 +29,23 @@ feature "wall" do
       expect(page).to have_css(".wall_pixel")
     end
   end
+
+  context "the new graffiti button" do
+    scenario "assigns the graffiti to the wall grid" do
+      5.times { new_graffiti }
+
+      @wall.reload
+
+      expect(@wall.grid[10][10]).not_to eq 0
+      expect(@wall.grid[10][9]).not_to eq 0
+      expect(@wall.grid[10][11]).not_to eq 0
+      expect(@wall.grid[11][10]).not_to eq 0
+      expect(@wall.grid[9][10]).not_to eq 0
+    end
+  end
+
+  def new_graffiti
+    visit "/"
+    click_link "new_graffiti"
+  end
 end
