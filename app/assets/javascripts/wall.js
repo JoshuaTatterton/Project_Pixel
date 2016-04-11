@@ -1,3 +1,12 @@
+var ready = function() {
+  var wall = document.getElementsByClassName("wall")[0];
+  wall.scrollTop = (wall.scrollHeight - wall.clientHeight ) / 2;
+  wall.scrollLeft = (wall.scrollWidth - wall.clientWidth ) / 2;
+};
+
+$(document).ready(ready);
+$(document).on("page:load", ready);
+
 var wall = angular.module("Wall", ["ngResource", "LZW"]);
 
 wall.controller("WallController", function($http, lzw) {
@@ -9,6 +18,7 @@ wall.controller("WallController", function($http, lzw) {
     self.wall = wall;
     self.createGraffitiArray();
     self.fillGraffitiArray();
+    self.align();
   };
 
   self.createGraffitiArray = function() {
@@ -34,6 +44,12 @@ wall.controller("WallController", function($http, lzw) {
         self.graffiti[row][column] = response.data;
       });   
     }
+  };
+
+  self.align = function() {
+    var wall = document.getElementsByClassName("wall")[0];
+    wall.scrollTop = (wall.scrollHeight - wall.clientHeight ) / 2;
+    wall.scrollLeft = (wall.scrollWidth - wall.clientWidth ) / 2;
   };
 
 });
