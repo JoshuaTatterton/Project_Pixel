@@ -3,7 +3,7 @@
     <div class="wall">
       <div class="row" ng-repeat="row in ctrl.wall.rows">
         <div class="column" ng-repeat="column in row.columns">
-          <button class="graffiti" id="{{column.no}}x{{row.no}}">
+          <button class="graffiti" id="{{column.no}}x{{row.no}}" ng-click="ctrl.clickGraffiti(column.id)">
             <div class="graffiti_grid" ng-if="column.id != 0">
               <div class="pixel_row" ng-repeat="prow in ctrl.graffiti[row.no-1][column.no-1].rows" id="row{{prow.no}}">
                 <div class="pixel_column" ng-repeat="pcolumn in prow.columns" id="column{{pcolumn.no}}">
@@ -15,6 +15,18 @@
         </div>
       </div>
     </div>
+    <div class="graffiti_options" ng-show="ctrl.optionDisplay">
+      <button id="close_options" ng-click="ctrl.hideOptions()">x</button>
+      <div class="option_graffiti" id="self.optionId">
+        <div class="pixel_row" ng-repeat="row in ctrl.optionGraffiti.rows" id="row{{row.no}}">
+          <div class="pixel_column" ng-repeat="column in row.columns" id="column{{column.no}}">
+            <div class="wall_pixel" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};"></div>
+          </div>
+        </div>
+      </div>
+      <a href="graffiti/{{ctrl.optionId}}/edit">Repaint</a>
+    </div>
+    <button id="options_screen" ng-show="ctrl.optionDisplay" ng-click="ctrl.hideOptions()"></button>
     <%= link_to "New Graffiti", new_graffiti_path, id: "new_graffiti" %>
   </div>
 </div>

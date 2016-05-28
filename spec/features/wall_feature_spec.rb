@@ -44,6 +44,68 @@ feature "wall" do
     end
   end
 
+  context "when trying to edit graffiti from the wall" do
+    scenario "clicking graffiti opens an option menu", js: true do
+      new_graffiti
+      click_button "Done"
+
+      expect(page).not_to have_css ".graffiti_options"
+
+      click_button "11x11"
+
+      expect(page).to have_css ".graffiti_options"
+    end
+
+    scenario "the options menu has the graffiti displayed in it", js: true do
+      new_graffiti
+      click_button "Done"
+
+      click_button "11x11"
+
+      expect(page).to have_css ".option_graffiti"
+    end
+
+    scenario "the options menu can be switched off", js: true do
+      new_graffiti
+      click_button "Done"
+
+      click_button "11x11"
+      click_button "close_options"
+
+      expect(page).not_to have_css ".option_graffiti"
+    end
+
+    scenario "the options menu has a link to edit the graffiti", js: true do
+      new_graffiti
+      click_button "Done"
+
+      click_button "11x11"
+      click_link "Repaint"
+
+      expect(current_path).to eq "/graffiti/1/edit"
+    end
+
+    scenario "there is a screen that appears with the options", js: true do
+      new_graffiti
+      click_button "Done"
+
+      expect(page).not_to have_button "options_screen"
+
+      click_button "11x11"
+
+      expect(page).to have_button "options_screen"
+    end
+    scenario "clicking the screen removes the options", js: true do
+      new_graffiti
+      click_button "Done"
+      click_button "11x11"
+
+      click_button "options_screen"
+
+      expect(page).not_to have_css ".option_graffiti"
+    end
+  end
+
   def new_graffiti
     visit "/"
     click_link "new_graffiti"

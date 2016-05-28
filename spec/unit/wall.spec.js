@@ -15,7 +15,7 @@ describe("WallController", function() {
         .respond(dummygraffiti);
       
       ctrl.init(dummywall);
-
+      
     });
   });
 
@@ -61,6 +61,66 @@ describe("WallController", function() {
   var graffitiArray = [];
   var dummywall = { "rows":[{ "no":1, "columns":[{"no": 1, "id": 1}] }] };
   var dummygraffiti = { graffiti: "a graffiti" };
+
+  it("clicking graffiti sets optionDisplay to true", function() {
+    ctrl.clickGraffiti(1, 1, 1);
+
+    expect(ctrl.optionDisplay).toEqual(true);
+  });
+
+  it("optionDisplay is false by default", function() {
+    expect(ctrl.optionDisplay).toEqual(false);
+  });
+
+  it("can hide optionDisplay", function() {
+    ctrl.clickGraffiti(0, 1, 1);
+    ctrl.hideOptions();
+
+    expect(ctrl.optionDisplay).toEqual(false);
+    expect(ctrl.optionId).toEqual(null);
+    expect(ctrl.optionGraffiti).toEqual(null);
+  });
+
+  it("optionDisplay is false if the id is 0", function() {
+    ctrl.clickGraffiti(0, 1, 1);
+
+    expect(ctrl.optionDisplay).toEqual(false);
+  });
+
+  it("clicking graffiti sets optionId to the input", function() {
+    ctrl.clickGraffiti(1, 1, 1);
+
+    expect(ctrl.optionId).toEqual(1);
+  });
+
+  it("optionDisplay is null by default", function() {
+    expect(ctrl.optionId).toEqual(null);
+  });
+
+  it("clicking graffiti sets optionId to the input", function() {
+    spyOn(ctrl, "getOptionGraffiti").and.callFake(function(){});
+
+    ctrl.clickGraffiti(1, 1, 1);
+
+    expect(ctrl.getOptionGraffiti).toHaveBeenCalledWith(1, 1, 1);
+  });
+
+  it("getOptionGraffiti assigns a graffiti to optionGraffiti", function() {
+    ctrl.graffiti[0][0] = "graffiti"
+
+    httpBackend.whenGET("/graffiti/2")
+        .respond(401, "");
+
+    ctrl.getOptionGraffiti(2, 1, 1)
+
+    httpBackend.flush();
+
+    expect(ctrl.optionGraffiti).toEqual(dummygraffiti)
+  });
+
+
+
+
 
 });
 
