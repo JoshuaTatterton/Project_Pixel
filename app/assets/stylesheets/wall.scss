@@ -58,3 +58,111 @@
   height: 3px;
   width: 3px;
 }
+
+.options_screen {
+  display: block;
+  -webkit-appearance: none;
+  border: none;
+  position: absolute;
+  height: 280px;
+  width: 560px;
+  background-color: #c0c0c0;
+  opacity: 0.5;
+  top: 8px;
+  left: calc(50% - (560px / 2));
+}
+.graffiti_options {
+  display: block;
+  position: absolute;
+  height: 260px;
+  width: 210px;
+  padding: 16px;
+  top: 18px;
+  right: calc(50% - (560px / 2));
+  background-color: #000099;
+  z-index: 10;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.close_options_btn {
+  position: absolute;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 1.5rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0.25rem; 
+  line-height: 0rem;
+  border-radius: 2rem;
+  background-color: red;
+  border: none;
+  top: -0.5rem;
+  left: -0.5rem;
+  cursor: pointer;
+}
+.option_graffiti {
+  margin: 4px auto;
+  white-space: normal;
+  height: 70px;
+  width: 140px;
+  display: block;
+  background-color: #000099;
+  border-style: none;
+  padding: 0 0 0 0;
+}
+.option_graffiti_grid {
+  height: 70px;
+  width: 140px;
+  display: inline-block;
+}
+.option_pixel_row {
+  display: block;
+  height: 5px;
+  width: 140px;
+}
+.option_pixel_column {
+  height: 5px;
+  display: inline-block;
+}
+.option_wall_pixel {
+  height: 5px;
+  width: 5px;
+  margin-top: -12px;
+}
+.edit_btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px;
+  height: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 10px;
+  background-color: #005ce6;
+  text-decoration: none;
+  color: black;
+}
+
+.new_graffiti_btn {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+  height: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #005ce6;
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+
+

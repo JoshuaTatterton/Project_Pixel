@@ -16,17 +16,17 @@
       </div>
     </div>
     <div class="graffiti_options" ng-show="ctrl.optionDisplay">
-      <button id="close_options" ng-click="ctrl.hideOptions()">x</button>
+      <button class="close_options_btn" id="close_options" ng-click="ctrl.hideOptions()">x</button>
       <div class="option_graffiti" id="self.optionId">
-        <div class="pixel_row" ng-repeat="row in ctrl.optionGraffiti.rows" id="row{{row.no}}">
-          <div class="pixel_column" ng-repeat="column in row.columns" id="column{{column.no}}">
-            <div class="wall_pixel" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};"></div>
+        <div class="option_pixel_row" ng-repeat="row in ctrl.optionGraffiti.rows" id="row{{row.no}}">
+          <div class="option_pixel_column" ng-repeat="column in row.columns" id="column{{column.no}}">
+            <div class="option_wall_pixel" id="{{column.no}}x{{row.no}}" style="background-color:{{column.colour}};"></div>
           </div>
         </div>
       </div>
-      <a href="graffiti/{{ctrl.optionId}}/edit">Repaint</a>
+      <a href="graffiti/{{ctrl.optionId}}/edit" class="edit_btn">Repaint</a>
     </div>
-    <button id="options_screen" ng-show="ctrl.optionDisplay" ng-click="ctrl.hideOptions()"></button>
-    <%= link_to "New Graffiti", new_graffiti_path, id: "new_graffiti" %>
+    <button class="options_screen" id="options_screen" ng-show="ctrl.optionDisplay" ng-click="ctrl.hideOptions()"></button>
+    <%= link_to "New Graffiti", new_graffiti_path, class: "new_graffiti_btn", id: "new_graffiti" %>
   </div>
 </div>
